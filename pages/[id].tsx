@@ -8,7 +8,7 @@ function fetcher(url: string) {
 }
 
 function getApiUrl(id: string) {
-  return `https://nft-api-five.vercel.app/api/metadata?contract_address=0x3acce66cd37518a6d77d9ea3039e00b3a2955460&token_id=${id}`;
+  return `https://nft-apis.vercel.app/api/metadata?contract_address=0x3acce66cd37518a6d77d9ea3039e00b3a2955460&token_id=${id}`;
 }
 
 function getCanvasSize() {
