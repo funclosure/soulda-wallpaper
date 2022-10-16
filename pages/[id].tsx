@@ -34,7 +34,7 @@ const Canvas: FC<{ image: HTMLImageElement }> = ({ image }) => {
     ctx.drawImage(image, 0, 0);
     const { data: bgColor } = ctx.getImageData(1, 1, 1, 1);
     const { data: bgColor2 } = ctx.getImageData(1, 200, 1, 1);
-    const { data: bgColor3 } = ctx.getImageData(1, 1799, 1, 1);
+    const { data: bgColor3 } = ctx.getImageData(1, 1700, 1, 1);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = `rgb(${bgColor[0]},${bgColor[1]},${bgColor[2]})`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
