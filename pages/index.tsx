@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit: React.FormEventHandler<HTMLInputElement> = (e) => {
     e.preventDefault();
 
     router.push(`/${tokenId}`);
