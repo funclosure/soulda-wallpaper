@@ -12,8 +12,16 @@ const Home: NextPage = () => {
 
   const handleSubmit = (e: any) => {
     if (!tokenId) {
+      alert("Empty token id, please try again!");
       return;
     }
+
+    const tokenIdNumber = parseInt(tokenId, 10)
+    if (tokenIdNumber < 1 || tokenIdNumber > 10000) {
+      alert("Invalid token id, please try again!");
+      return;
+    }
+
     setIsSubmitting(true);
     router.push(`/${tokenId}`);
     setIsSubmitting(false);
