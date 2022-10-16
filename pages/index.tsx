@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
-  const handleSubmit: React.FormEventHandler<HTMLInputElement> = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     router.push(`/${tokenId}`);
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           width={350}
           height={164}
         />
-        <form onSubmit={handleSubmit} className="py-32">
+        <div className="py-32">
           <input
             className="block w-64 text-center h-12 border border-gray-400"
             type="number"
@@ -45,12 +45,12 @@ const Home: NextPage = () => {
           />
           <button
             className="block w-64 text-center mt-6 bg-black text-white py-2 rounded-full"
-            type="submit"
+            onClick={handleSubmit}
             disabled={isSubmitting}
           >
             {isSubmitting ? "Generating..." : "Generate Wallpaper!"}
           </button>
-        </form>
+        </div>
       </main>
 
       <footer className="mx-auto text-center p-12 text-gray-500">
