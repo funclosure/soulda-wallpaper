@@ -50,7 +50,7 @@ const Home: NextPage = () => {
             type="number"
             min="1"
             max="10000"
-            placeholder="Enter you token id here..."
+            placeholder="Enter your token id here..."
             onChange={(e) => setTokenId(e.target.value)}
             value={tokenId}
           />
