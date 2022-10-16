@@ -37,7 +37,7 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <main className="mx-auto text-center h-[85vh] w-64">
+      <main className="mx-auto text-center w-64">
         <Image
           src="https://cdn.shopify.com/s/files/1/0637/4513/0718/files/WonderPals_Shop_Logo_700x.png"
           alt="WonderPals"
