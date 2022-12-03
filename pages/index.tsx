@@ -66,13 +66,35 @@ const Home: NextPage = () => {
 
       <footer className="mx-auto text-center p-12 text-gray-500">
         <p>
-          Built by{" "}
+          Fork from{" "}
+          <a
+            href="https://wong2.me/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            wong2.eth
+          </a>{" "}
+          | Mfers
+        </p>
+        <p>
+          Fork from{" "}
           <a
             href="https://twitter.com/shep_eth"
             target="_blank"
             rel="noreferrer"
           >
             shep
+          </a>{" "}
+          | WonderPals
+        </p>
+        <p>
+          Made by{" "}
+          <a
+            href="https://soulda16.club/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            soulda727
           </a>{" "}
           with ❤️
         </p>
