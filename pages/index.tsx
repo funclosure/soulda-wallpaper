@@ -17,7 +17,7 @@ const Home: NextPage = () => {
     }
 
     const tokenIdNumber = parseInt(tokenId, 10)
-    if (tokenIdNumber < 1 || tokenIdNumber > 10000) {
+    if (tokenIdNumber < 0 || tokenIdNumber > 7777) {
       alert("Invalid token id, please try again!");
       return;
     }
@@ -30,19 +30,19 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>WonderPals Wallpaper Generator</title>
+        <title>Soulda Wallpaper Generator</title>
         <meta
           name="description"
-          content="Generator your own WonderPals wallpaper!"
+          content="Generator your own Soulda wallpaper!"
         />
       </Head>
 
       <main className="mx-auto text-center w-64">
         <Image
-          src="https://cdn.shopify.com/s/files/1/0637/4513/0718/files/WonderPals_Shop_Logo_700x.png"
-          alt="WonderPals"
-          width={350}
-          height={164}
+          src="/images/soulda-logo-type.png"
+          alt="Soulda16Club"
+          width={300}
+          height={300}
         />
         <div className="py-32">
           <input
