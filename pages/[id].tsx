@@ -35,13 +35,63 @@ const Canvas: FC<{ image: HTMLImageElement }> = ({ image }) => {
     const { data: bgColor } = ctx.getImageData(1, 1, 1, 1);
     const { data: bgColor2 } = ctx.getImageData(1, 200, 1, 1);
     const { data: bgColor3 } = ctx.getImageData(1, 1700, 1, 1);
+    
+
+    const fullsize = (bgColor[0] !== bgColor2[0] || bgColor[1] !== bgColor2[1] || bgColor[0] !== bgColor3[0] || bgColor[1] !== bgColor3[1]) ? canvas.width : Math.floor((canvas.width * 6) / 7);
+    const padding = 16;
+    const gradientHeight = 16.0;
+    const imageSize = fullsize;
+    const x = 0;
+    const y = canvas.height - imageSize - (gradientHeight - 6);
+    
+    var gradient = ctx.createLinearGradient(0, 1000, 0, 0);
+    gradient.addColorStop(1, `rgb(${bgColor[0]},${bgColor[1]},${bgColor[2]})`);
+    gradient.addColorStop(0.2, `rgba(${bgColor[0]},${bgColor[1]},${bgColor[2]}, 0.0)`);
+    gradient.addColorStop(0, `rgba(${bgColor[0]},${bgColor[1]},${bgColor[2]}, 0.0)`);
+
+    var gradientImageData = createRectangularGradientImageData();
+    var ctxImageData = ctx.getImageData(x, y, imageSize, imageSize);
+    ctx.drawImage(image, x, y, imageSize, imageSize);
+    var imageImageData = ctx.getImageData(x, y, imageSize, imageSize);
+
+    var opacity = 1;
+
+    var ctxImageDataData = ctxImageData.data;
+    var imageImageDataData = imageImageData.data;
+    var gradientImageDataData = gradientImageData.data;
+    var ctxImageDataDataLength = ctxImageData.data.length;
+
+    var i;
+    for (i = 0; i < ctxImageDataDataLength; i += 4) {
+        opacity = gradientImageDataData[i + 3] / 255;
+
+        // Update rgb values of context image data.
+        ctxImageDataData[i] =
+        (imageImageDataData[i] * opacity) +
+        (ctxImageDataData[i] * (1 - opacity));
+
+        ctxImageDataData[i + 1] =
+        (imageImageDataData[i + 1] * opacity) +
+        (ctxImageDataData[i + 1] * (1 - opacity));
+
+        ctxImageDataData[i + 2] =
+        (imageImageDataData[i + 2] * opacity) +
+        (ctxImageDataData[i + 2] * (1 - opacity));
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = `rgb(${bgColor[0]},${bgColor[1]},${bgColor[2]})`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.putImageData(ctxImageData, x, canvas.height - imageSize);
+    gradientImageData = createRectangularGradientImageData();
 
-    const imageSize = (bgColor[0] !== bgColor2[0] || bgColor[1] !== bgColor2[1] || bgColor[0] !== bgColor3[0] || bgColor[1] !== bgColor3[1]) ? canvas.width : Math.floor((canvas.width * 6) / 7);
-    ctx.drawImage(image, (canvas.width - imageSize) / 2, canvas.height - imageSize, imageSize, imageSize);
+    function createRectangularGradientImageData() {
+      ctx.fillStyle = gradient;
+      
+      ctx.fillRect(x,y, imageSize, gradientHeight);
 
+        return ctx.getImageData(x,y, imageSize, imageSize);
+    }
     const dataUrl = canvas.toDataURL("image/png");
     setResult(dataUrl);
   }, [image]);
